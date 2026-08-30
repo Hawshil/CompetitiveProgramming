@@ -2,7 +2,7 @@
 using namespace std;
 
 using ll = long long;
-const int MOD = 1e9 + 7;
+static constexpr ll MOD = 1000000007LL;
 #define el '\n'
 
 void solve()
@@ -10,29 +10,27 @@ void solve()
     ll n;
     cin >> n;
 
-    vector<ll> b(n, 0);
+    vector<ll> nums(n, 0);
     for (ll i = 0; i < n; i++)
     {
-        cin >> b[i];
+        cin >> nums[i];
     }
 
-    vector<ll> a;
-    a.emplace_back(b[0]);
-    for (ll i = 1; i < n; i++)
+    int minGap = INT_MAX;
+    for (ll i = 0; i < n - 1; i++)
     {
-        a.emplace_back(b[i]);
-        if (b[i] < b[i - 1])
+        if (nums[i + 1] - nums[i] < minGap)
         {
-            a.emplace_back(b[i]);
+            minGap = nums[i + 1] - nums[i];
+        }
+    
+        if(minGap < 0){
+            cout << 0 << el;
+            return;
         }
     }
 
-    cout << a.size() << el;
-    for (ll i : a)
-    {
-        cout << i << " ";
-    }
-    cout << el;
+    cout << (minGap + 2) / 2 << el;
 }
 
 signed main()

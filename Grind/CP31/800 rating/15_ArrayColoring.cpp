@@ -2,37 +2,32 @@
 using namespace std;
 
 using ll = long long;
-const int MOD = 1e9 + 7;
+static constexpr ll MOD = 1000000007LL;
 #define el '\n'
 
 void solve()
 {
-    ll n;
+    ll n, odd = 0LL;
     cin >> n;
 
-    vector<ll> b(n, 0);
+    vector<ll> nums(n, 0);
     for (ll i = 0; i < n; i++)
     {
-        cin >> b[i];
-    }
-
-    vector<ll> a;
-    a.emplace_back(b[0]);
-    for (ll i = 1; i < n; i++)
-    {
-        a.emplace_back(b[i]);
-        if (b[i] < b[i - 1])
+        cin >> nums[i];
+        if (nums[i] % 2 != 0)
         {
-            a.emplace_back(b[i]);
+            odd++;
         }
     }
 
-    cout << a.size() << el;
-    for (ll i : a)
+    if (odd % 2 == 0)
     {
-        cout << i << " ";
+        cout << "YES" << el;
     }
-    cout << el;
+    else
+    {
+        cout << "NO" << el;
+    }
 }
 
 signed main()
